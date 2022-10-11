@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Donation.cs" />
     <Compile Include="Donor.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Prize.cs" />
