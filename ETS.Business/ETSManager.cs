@@ -297,6 +297,43 @@ namespace ETS.Business
 
         #endregion
 
-
+        #region List
+        public string ListSponsors()
+        {
+            string msg = "";
+            foreach (Sponsor sponsor in mySponsors)
+            {
+                msg += sponsor.toString();
+            }
+            return msg;
+        }
+        public string ListDonors()
+        {
+            string msg = "";
+            foreach (Donor donor in myDonors)
+            {
+                msg += donor.toString();
+            }
+            return msg;
+        }
+        public string ListPrizes()
+        {
+            string msg = "";
+            foreach (Prize prize in myPrizes)
+            {
+                msg += prize.toString();
+            }
+            return msg;
+        }
+        public string ListDonations()
+        {
+            string msg = "";
+            foreach (Donation donation in myDonations)
+            {
+                msg += donation.toString();
+            }
+            return msg;
+        }
+        #endregion
     }
 }
