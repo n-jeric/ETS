@@ -416,7 +416,62 @@ namespace ETS.Business
             return msg;
         }
 
+        public void ReadSposor(string dirPath)
+        {
+            string filePath = dirPath + "Sponsor.txt";
+            using (StreamReader textIn = new StreamReader(filePath))
+            {
+                while (textIn.Peek() != -1)
+                {
+                    string[] strArr;
+                    strArr = textIn.ReadLine().Split(',');
 
+                    mySponsors.AddSponsor(new Sponsor(strArr[0], strArr[1], strArr[2], double.Parse(strArr[3])));
+                }
+            }
+        }
+        public void ReadDonor(string dirPath)
+        {
+            string filePath = dirPath + "Donor.txt";
+            using (StreamReader textIn = new StreamReader(filePath))
+            {
+                while (textIn.Peek() != -1)
+                {
+                    string[] strArr;
+                    strArr = textIn.ReadLine().Split(',');
+
+                    myDonors.AddDonor(new Donor(strArr[0], strArr[1], strArr[2], strArr[3], strArr[4], char.Parse(strArr[5]), strArr[6], strArr[7], double.Parse(strArr[8])));
+                }
+            }
+        }
+        public void ReadPrize(string dirPath)
+        {
+            string filePath = dirPath + "Prize.txt";
+            using (StreamReader textIn = new StreamReader(filePath))
+            {
+                while (textIn.Peek() != -1)
+                {
+                    string[] strArr;
+                    strArr = textIn.ReadLine().Split(',');
+
+                    myPrizes.AddPrize(new Prize(strArr[0], strArr[1], double.Parse(strArr[2]), double.Parse(strArr[3]), int.Parse(strArr[4]), strArr[6]));
+                }
+            }
+        }
+        public void ReadDonation(string dirPath)
+        {
+            string filePath = dirPath + "Donation.txt";
+            using (StreamReader textIn = new StreamReader(filePath))
+            {
+                while (textIn.Peek() != -1)
+                {
+                    string[] strArr;
+                    strArr = textIn.ReadLine().Split(',');
+
+                    myDonations.AddDonation(new Donation(strArr[0], strArr[1], strArr[2], double.Parse(strArr[3]), strArr[4], int.Parse(strArr[5])));
+                }
+            }
+        }
 
         #endregion
 
