@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -335,5 +336,89 @@ namespace ETS.Business
             return msg;
         }
         #endregion
+
+        #region Read Write
+        public string Write(string fPath, string textToFile)
+        {
+            try
+            {
+                //fs = new FileStream(fPath, FileMode.Append, FileAccess.Write); or true for append
+                using (StreamWriter textOut = new StreamWriter(fPath, false))
+                {
+                    textOut.Write(textToFile);
+                }
+                return "List Saved to File";
+            }
+            catch (IOException ex)
+            {
+                return ex.Message.ToString();
+            }
+            //{ MessageBox.Show(ex.Message, "IOException"); }
+        }
+        public string WriteSponsor(string dirPath)
+        {
+            string filePath = dirPath + "Sponsor.txt";
+            string msg = "No Sponsors to save to File";
+            if (mySponsors.Count != 0)
+            {
+                string textToFile = "";
+                for (int i = 0; i < mySponsors.Count; i++)
+                {
+                    textToFile += mySponsors[i].toString();
+                }
+                msg = Write(filePath, textToFile);
+            }
+            return msg;
+        }
+        public string WriteDonor(string dirPath)
+        {
+            string filePath = dirPath + "Donor.txt";
+            string msg = "No Donors to Save to File";
+            if (myDonors.Count != 0)
+            {
+                string textToFile = "";
+                foreach (Donor donor in myDonors)
+                {
+                    textToFile += donor.toString();
+                }
+                msg = Write(filePath, textToFile);
+            }
+            return msg;
+        }
+        public string WritePrize(string dirPath)
+        {
+            string filePath = dirPath + "Prize.txt";
+            string msg = "No Prizes to Save to File";
+            if (myPrizes.Count != 0)
+            {
+                string textToFile = "";
+                foreach (Prize prize in myPrizes)
+                {
+                    textToFile += prize.toString();
+                }
+                msg = Write(filePath, textToFile);
+            }
+            return msg;
+        }
+        public string WriteDonation(string dirPath)
+        {
+            string filePath = dirPath + "Donation.txt";
+            string msg = "No Donations to Save to File";
+            if (myDonations.Count != 0)
+            {
+                string textToFile = "";
+                foreach (Donation donation in myDonations)
+                {
+                    textToFile += donation.toString();
+                }
+                msg = Write(filePath, textToFile);
+            }
+            return msg;
+        }
+
+
+
+        #endregion
+
     }
 }
