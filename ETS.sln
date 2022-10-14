@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETS.Business", "ETS.Business\ETS.Business.csproj", "{DAB43FBE-82BA-4D92-81FC-02B619E147D4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelethonSystemWin", "TelethonSystemWin\TelethonSystemWin.csproj", "{D8973765-47FB-44CB-AAB5-CCD5224D608B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{DAB43FBE-82BA-4D92-81FC-02B619E147D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAB43FBE-82BA-4D92-81FC-02B619E147D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAB43FBE-82BA-4D92-81FC-02B619E147D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8973765-47FB-44CB-AAB5-CCD5224D608B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8973765-47FB-44CB-AAB5-CCD5224D608B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8973765-47FB-44CB-AAB5-CCD5224D608B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8973765-47FB-44CB-AAB5-CCD5224D608B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
