@@ -475,5 +475,49 @@ namespace ETS.Business
 
         #endregion
 
+        #region Remove entry
+        /*remove donor by passing index number
+
+        public string RemoveDonor(string donorID)
+        {
+            for (int i = 0; i < myDonors.Count; i++)
+            {
+                if (myDonors[i].DonorID.Equals(donorID))
+                {
+                    myDonors.RemoveDonor(i);
+                    return $"Donor {donorID} removed";
+                }
+            }
+            return $"Donor {donorID} not removed";
+        }*/
+
+        //remove donor by passing donor instance
+        public string RemoveDonor(string donorID)
+        {
+            foreach (Donor donor in myDonors)
+            {
+                if (donor.DonorID.Equals(donorID))
+                {
+                    myDonors.RemoveDonor(donor);
+                    return $"Donor {donorID} removed";
+                }
+            }
+            return $"Donor {donorID} not removed";
+        }
+        //remove sponsor by passing sponsor instance
+        public string RemoveSponsor(string sponsorID)
+        {
+            foreach (Sponsor sponsor in mySponsors)
+            {
+                if (sponsor.SponsorID.Equals(sponsorID))
+                {
+                    mySponsors.RemoveSponsor(sponsor);
+                    return $"Sponsor {sponsorID} removed";
+                }
+            }
+            return $"Sponsor {sponsorID} not removed";
+        }
+        #endregion
+
     }
 }
