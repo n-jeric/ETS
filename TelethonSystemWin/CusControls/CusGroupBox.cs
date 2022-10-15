@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
-namespace TelethonSystemWin.CusContols
+namespace TelethonSystemWin.CusControls
 {
     internal class CusGroupBox: GroupBox
     {
