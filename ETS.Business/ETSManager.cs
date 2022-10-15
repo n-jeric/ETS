@@ -519,5 +519,154 @@ namespace ETS.Business
         }
         #endregion
 
+        #region Additional for Form Display
+
+        //dashboard button display
+        public int numberOfSponsors()
+        {
+            return mySponsors.Count;
+        }
+        public int numberOfDonors()
+        {
+            return myDonors.Count;
+        }
+        public int numberOfPrizes()
+        {
+            return myPrizes.Count;
+        }
+        public double donationTotal()
+        {
+            double total = 0;
+
+            foreach (Donation donation in myDonations)
+            {
+                total += donation.DonationAmount;
+            }
+            return total;
+        }
+
+        //Display Sponsor and Donor in text boxes
+        public string FindSponsor(string sponsorID)
+        {
+            string info = "";
+            foreach (Sponsor sponsor in mySponsors)
+            {
+                if (sponsor.SponsorID == sponsorID)
+                {
+                    info = $"{sponsor.FirstName},{sponsor.LastName}";
+                }
+            }
+            return info;
+        }
+        public Array FindSponsor1(string sponsorID)
+        {
+            string info = "";
+            foreach (Sponsor sponsor in mySponsors)
+            {
+                if (sponsor.SponsorID == sponsorID)
+                {
+                    info = $"{sponsor.FirstName},{sponsor.LastName}";
+                }
+            }
+            string[] strArr;
+            strArr = info.Split(',');
+
+            //string[] strArr = new string[2];
+            //foreach (Sponsor sponsor in mySponsors)
+            //{
+            //    if (sponsor.SponsorID == sponsorID)
+            //    {
+            //        strArr[0] = sponsor.FirstName;
+            //        strArr[1] = sponsor.LastName;
+            //    }
+            //}
+            return strArr;
+        }
+        public string FindDonor(string donorID)
+        {
+            string info = "";
+            foreach (Donor donor in myDonors)
+            {
+                if (donor.DonorID == donorID)
+                {
+                    info = $"{donor.FirstName},{donor.LastName},{donor.Address},{donor.Phone},{donor.CardType.ToString()},{donor.CardNumber},{donor.CardExpiry}";
+                }
+            }
+            return info;
+        }
+
+        //display in DataGrid
+        public List<List<string>> ListingSponsor()
+        {
+            List<List<string>> listSponsor = new List<List<string>>();
+
+            foreach (Sponsor sponsor in mySponsors)
+            {
+                List<string> temp = new List<string>();
+                temp.Add(sponsor.SponsorID);
+                temp.Add(sponsor.FirstName);
+                temp.Add(sponsor.LastName);
+                temp.Add(sponsor.TotalPrizeValue.ToString("N2"));
+
+                listSponsor.Add(temp);
+            }
+            return listSponsor;
+        }
+        public List<List<string>> ListingPrizes()
+        {
+            List<List<string>> listPrize = new List<List<string>>();
+
+            foreach (Prize prize in myPrizes)
+            {
+                List<string> temp = new List<string>();
+                temp.Add(prize.PrizeID);
+                temp.Add(prize.Description);
+                temp.Add(prize.Value.ToString("N2"));
+                temp.Add(prize.DonationLimit.ToString("N2"));
+                temp.Add(prize.CurrentAvailable.ToString());
+
+                listPrize.Add(temp);
+            }
+            return listPrize;
+        }
+        public List<List<string>> ListingDonors()
+        {
+            List<List<string>> listDonor = new List<List<string>>();
+
+            foreach (Donor donor in myDonors)
+            {
+                List<string> temp = new List<string>();
+                temp.Add(donor.DonorID);
+                temp.Add(donor.FirstName);
+                temp.Add(donor.LastName);
+                temp.Add(donor.Address);
+                temp.Add(donor.Phone);
+                temp.Add(donor.CardType.ToString());
+                temp.Add(donor.DonationTotal.ToString("N2"));
+
+                listDonor.Add(temp);
+            }
+            return listDonor;
+        }
+        public List<List<string>> ListingDonations()
+        {
+            List<List<string>> listDonation = new List<List<string>>();
+
+            foreach (Donation donation in myDonations)
+            {
+                List<string> temp = new List<string>();
+                temp.Add(donation.DonationID);
+                temp.Add(donation.DonationDate);
+                temp.Add(donation.DonationAmount.ToString("N2"));
+                temp.Add(donation.DonorID);
+                temp.Add(donation.PrizeID);
+                temp.Add(donation.PrizeNum.ToString());
+
+                listDonation.Add(temp);
+            }
+            return listDonation;
+        }
+        #endregion
+
     }
 }
