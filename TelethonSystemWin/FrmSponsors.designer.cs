@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblSponsor = new System.Windows.Forms.Label();
             this.lblPrize = new System.Windows.Forms.Label();
             this.btnSaveSpon = new FontAwesome.Sharp.IconButton();
@@ -129,14 +129,14 @@
             this.dataGVSponsors.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(56)))), ((int)(((byte)(80)))));
             this.dataGVSponsors.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGVSponsors.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGVSponsors.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGVSponsors.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dataGVSponsors.ColumnHeadersHeight = 34;
             this.dataGVSponsors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGVSponsors.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -145,21 +145,21 @@
             this.dataGVSponsors.Location = new System.Drawing.Point(0, 0);
             this.dataGVSponsors.Name = "dataGVSponsors";
             this.dataGVSponsors.ReadOnly = true;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(61)))), ((int)(((byte)(88)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(79)))), ((int)(((byte)(114)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGVSponsors.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(61)))), ((int)(((byte)(88)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(79)))), ((int)(((byte)(114)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGVSponsors.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGVSponsors.RowHeadersVisible = false;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(61)))), ((int)(((byte)(88)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(79)))), ((int)(((byte)(114)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Gainsboro;
-            this.dataGVSponsors.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(61)))), ((int)(((byte)(88)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(79)))), ((int)(((byte)(114)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Gainsboro;
+            this.dataGVSponsors.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dataGVSponsors.RowTemplate.Height = 25;
             this.dataGVSponsors.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGVSponsors.Size = new System.Drawing.Size(814, 231);
@@ -268,7 +268,7 @@
             this.txtDonationLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtDonationLimit.Texts = "";
             this.txtDonationLimit.UnderlineStyle = false;
-//            this.txtDonationLimit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDonationLimit_KeyPress);
+            this.txtDonationLimit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDonationLimit_KeyPress);
             // 
             // txtQty
             // 
@@ -294,7 +294,7 @@
             this.txtQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtQty.Texts = "";
             this.txtQty.UnderlineStyle = false;
-//            this.txtQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQty_KeyPress);
+            this.txtQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQty_KeyPress);
             // 
             // txtPrizeValue
             // 
@@ -320,7 +320,7 @@
             this.txtPrizeValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtPrizeValue.Texts = "";
             this.txtPrizeValue.UnderlineStyle = false;
-//            this.txtPrizeValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrizeValue_KeyPress);
+            this.txtPrizeValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrizeValue_KeyPress);
             this.txtPrizeValue.Leave += new System.EventHandler(this.txtPrizeValue_Leave);
             // 
             // txtPrizeDesc
@@ -423,7 +423,7 @@
             this.txtSponLName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtSponLName.Texts = "";
             this.txtSponLName.UnderlineStyle = false;
-//            this.txtSponLName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSponLName_KeyPress);
+            this.txtSponLName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSponLName_KeyPress);
             // 
             // txtSponFName
             // 
@@ -449,7 +449,7 @@
             this.txtSponFName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtSponFName.Texts = "";
             this.txtSponFName.UnderlineStyle = false;
-//            this.txtSponFName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSponFName_KeyPress);
+            this.txtSponFName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSponFName_KeyPress);
             // 
             // btnDeleteSponsor
             // 

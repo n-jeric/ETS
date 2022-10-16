@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Interop;
+using System.Windows.Markup;
 using ETS.Business;
 using TelethonSystemWin.CusControls;
 
@@ -186,6 +188,82 @@ namespace TelethonSystemWin
             }
         }
 
-        
+        #region Key Press Control
+        private void txtPrizeValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Get reference to calling control
+            //TextBox textBox = sender as TextBox;
+            CusTextBox textBox1 = sender as CusTextBox;
+            // Only allow 0-9, .
+            if (!char.IsControl(e.KeyChar) &&
+                !char.IsDigit(e.KeyChar) &&
+                e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+
+            // Avoid double decimals
+            if (e.KeyChar == '.' && textBox1.Texts.IndexOf('.') > -1)
+            {
+                e.Handled = true;
+            }
+        }
+        private void txtQty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Only allow 0-9
+            if (!char.IsControl(e.KeyChar) &&
+               !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private void txtDonationLimit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Get reference to calling control
+            CusTextBox textBox1 = sender as CusTextBox;
+            // Only allow 0-9, .
+            if (!char.IsControl(e.KeyChar) &&
+                !char.IsDigit(e.KeyChar) &&
+                e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+
+            // Avoid double decimals
+            if (e.KeyChar == '.' && textBox1.Texts.IndexOf('.') > -1)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtSponFName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Get reference to calling control
+            CusTextBox textBox1 = sender as CusTextBox;
+            // Only allow a-z, -,.
+            if (!char.IsControl(e.KeyChar) &&
+                !char.IsLetter(e.KeyChar) &&
+                !char.IsWhiteSpace(e.KeyChar) &&
+                e.KeyChar != '-' &&
+                e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+        }
+        private void txtSponLName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Get reference to calling control
+            CusTextBox textBox1 = sender as CusTextBox;
+            // Only allow a-z, -,.
+            if (!char.IsControl(e.KeyChar) &&
+                !char.IsLetter(e.KeyChar) &&
+                !char.IsWhiteSpace(e.KeyChar) &&
+                e.KeyChar != '-' &&
+                e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+        }
+        #endregion
     }
 }
