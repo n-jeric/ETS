@@ -60,6 +60,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CusControls\CusMessageBox.cs" />
+    <Compile Include="CusControls\CusRadioButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CusControls\CusTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
