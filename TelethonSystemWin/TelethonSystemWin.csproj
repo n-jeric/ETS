@@ -84,6 +84,12 @@
     <Compile Include="FrmDashboard.designer.cs">
       <DependentUpon>FrmDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmSponsors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSponsors.designer.cs">
+      <DependentUpon>FrmSponsors.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CusControls\CusTextBox.resx">
@@ -94,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmDashboard.resx">
       <DependentUpon>FrmDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSponsors.resx">
+      <DependentUpon>FrmSponsors.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
