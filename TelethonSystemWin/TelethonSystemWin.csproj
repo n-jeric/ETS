@@ -90,6 +90,12 @@
     <Compile Include="FrmDashboard.designer.cs">
       <DependentUpon>FrmDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmDonors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDonors.designer.cs">
+      <DependentUpon>FrmDonors.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmSponsors.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmDashboard.resx">
       <DependentUpon>FrmDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDonors.resx">
+      <DependentUpon>FrmDonors.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSponsors.resx">
       <DependentUpon>FrmSponsors.cs</DependentUpon>

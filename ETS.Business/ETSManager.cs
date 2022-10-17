@@ -668,5 +668,69 @@ namespace ETS.Business
         }
         #endregion
 
+        #region Show Prize
+        //ListQualifiedPrizes in DataGrid
+        public List<List<string>> ListingPrizes(double amount)
+        {
+            List<List<string>> listPrize = new List<List<string>>();
+
+            foreach (Prize prize in myPrizes)
+            {
+                if (prize.DonationLimit < amount)
+                {
+                    List<string> temp = new List<string>();
+                    temp.Add(prize.PrizeID);
+                    temp.Add(prize.Description);
+                    temp.Add(prize.Value.ToString("N2"));
+                    temp.Add(prize.DonationLimit.ToString("N2"));
+                    temp.Add(prize.CurrentAvailable.ToString());
+                    temp.Add(numberOfPrizes(prize.PrizeID, amount).ToString());
+                    //temp.Add(((int)(amount/prize.DonationLimit)).ToString());
+                    listPrize.Add(temp);
+                }
+            }
+            return listPrize;
+        }
+        //ListQualifiedPrizes in DropDown
+        public List<string> ListQualifiedPrizes(double amount)
+        {
+            List<string> prizeListCombo = new List<string>();
+            foreach (Prize prize in myPrizes)
+            {
+                if (prize.DonationLimit < amount)
+                {
+                    prizeListCombo.Add(prize.PrizeID + " -> " + prize.Description + " - " + prize.DonationLimit.ToString());
+                }
+            }
+            return prizeListCombo;
+        }
+
+        //Calculate number of prizes for donation amount
+        public int numberOfPrizes(string prizeID, double amount)
+        {
+            int prizeNum = 0;
+            foreach (Prize prize in myPrizes)
+            {
+                if (prize.PrizeID.Equals(prizeID))
+                {
+                    prizeNum = (int)(amount / prize.DonationLimit);
+                }
+            }
+            return prizeNum;
+        }
+        public int numberAvilable(string prizeID)
+        {
+            int numAvailable = 0;
+            foreach (Prize prize in myPrizes)
+            {
+                if (prize.PrizeID.Equals(prizeID))
+                {
+                    numAvailable = prize.CurrentAvailable;
+                }
+            }
+            return numAvailable;
+        }
+
+        #endregion
     }
 }
