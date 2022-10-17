@@ -56,6 +56,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CusControls\CusComboBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="CusControls\CusGroupBox.cs">
       <SubType>Component</SubType>
     </Compile>
