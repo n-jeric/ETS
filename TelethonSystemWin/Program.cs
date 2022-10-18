@@ -16,7 +16,18 @@ namespace TelethonSystemWin
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ETSTelethon());
+            //Application.Run(new ETSTelethon());
+            //Application.Run(new Login());
+
+            Login login = new Login();
+            if (login.ShowDialog() == DialogResult.OK)
+            {
+                Application.Run(new ETSTelethon());
+            }
+            else
+            {
+                Application.Exit();
+            }
         }
     }
 }
