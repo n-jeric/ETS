@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
@@ -268,57 +269,15 @@ namespace TelethonSystemWin
 
         private void btnViewDonors_Click(object sender, EventArgs e)
         {
-            List<List<string>> uInput;// = new List<List<string>>();
-            DataTable dt = new DataTable();
-            string[] usIn = new string[7];
-
-            uInput = manager.ListingDonors();
-
-            dt.Columns.Add("Donor ID", typeof(string));
-            dt.Columns.Add("First Name", typeof(string));
-            dt.Columns.Add("Last Name", typeof(string));
-            dt.Columns.Add("Address", typeof(string));
-            dt.Columns.Add("Phone", typeof(string));
-            dt.Columns.Add("Card Type", typeof(string));
-            dt.Columns.Add("Donation Total", typeof(string));
-
-
-
-            for (int i = 0; i < uInput.Count; i++)
-            {
-                for (int j = 0; j < usIn.Length; j++)
-                {
-                    usIn[j] = uInput[i][j];
-                }
-                dt.Rows.Add(usIn);
-                dataGVDonors.DataSource = dt;
-            }
+            DataTable dt = manager.DonorDataTable();
+            dataGVDonors.DataSource = dt;
+            dataGVDonors.Columns["DonationTotal"].DefaultCellStyle.Format = "C2";
         }
         private void btnViewDonations_Click(object sender, EventArgs e)
         {
-            List<List<string>> uInput;// = new List<List<string>>();
-            DataTable dt = new DataTable();
-            string[] usIn = new string[6];
-
-            uInput = manager.ListingDonations();
-
-            dt.Columns.Add("Donation ID", typeof(string));
-            dt.Columns.Add("Donation Date", typeof(string));
-            dt.Columns.Add("Donation Amount", typeof(string));
-            dt.Columns.Add("Donor ID", typeof(string));
-            dt.Columns.Add("Prize ID", typeof(string));
-            dt.Columns.Add("Num Prizes", typeof(string));
-
-
-            for (int i = 0; i < uInput.Count; i++)
-            {
-                for (int j = 0; j < usIn.Length; j++)
-                {
-                    usIn[j] = uInput[i][j];
-                }
-                dt.Rows.Add(usIn);
-                dataGVDonors.DataSource = dt;
-            }
+            DataTable dt = manager.DonationDataTable();
+            dataGVDonors.DataSource = dt;
+            dataGVDonors.Columns["DonationAmount"].DefaultCellStyle.Format = "C2";
         }
         private void btnClearDonor_Click(object sender, EventArgs e)
         {
@@ -350,48 +309,21 @@ namespace TelethonSystemWin
         {
             if(txtAmount.Texts != "")
             {
-                List<List<string>> uInput;// = new List<List<string>>();
-                DataTable dt1 = new DataTable();
-                string[] usIn = new string[6];
-                //Object[] usIn = new Object[6];
-
-                uInput = manager.ListingPrizes(Convert.ToDouble(txtAmount.Texts));
-
-                dt1.Columns.Add("Prize ID", typeof(string));
-                dt1.Columns.Add("Description", typeof(string));
-                dt1.Columns.Add("Value", typeof(string));
-                dt1.Columns.Add("Donation Limit", typeof(string));
-                dt1.Columns.Add("Current Available", typeof(string));
-                dt1.Columns.Add("Number", typeof(string));
-
-
-                //for (int i = 0; i < uInput.Count; i++)
-                //{
-
-                //    usIn[0] = uInput[i][0];
-                //    usIn[1] = uInput[i][1];
-                //    usIn[2] = uInput[i][2];
-                //    usIn[3] = uInput[i][3];
-                //    usIn[4] = uInput[i][4];
-                //    usIn[5] = int.Parse(uInput[i][5]);
-
-                //    dt1.Rows.Add(usIn);
-                //    dataGVDonors.DataSource = dt1;
-                //}
-
-
-                for (int i = 0; i < uInput.Count; i++)
+                try
                 {
-                    for (int j = 0; j < usIn.Length; j++)
-                    {
-                        usIn[j] = uInput[i][j];
-                    }
-                    dt1.Rows.Add(usIn);
-                    dataGVDonors.DataSource = dt1;
+                    DataTable dt = manager.QualifiedPrizeDataTable(Convert.ToDouble(txtAmount.Texts));
+
+                    dataGVDonors.DataSource = dt;
+                    dataGVDonors.Columns["Value"].DefaultCellStyle.Format = "C2";
+                    dataGVDonors.Columns["DonationLimit"].DefaultCellStyle.Format = "C2";
+
+                    ShowPrizesComboBox();
                 }
-                ShowPrizesComboBox();
+                catch (Exception ex)
+                {
+                    CusMessageBox.Show(ex.Message + "\nPlease enter correct donation amount");
+                }
             }
-            
         }
         private void ShowPrizesComboBox()
         {
@@ -415,8 +347,8 @@ namespace TelethonSystemWin
         private void comBoxPrize_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             string prize = comBoxExtract();
-            int num = manager.numberOfPrizes(prize, double.Parse(txtAmount.Texts));
-            int numAvailable = manager.numberAvilable(prize);
+            int num = manager.NumberOfPrizes(prize, double.Parse(txtAmount.Texts));
+            int numAvailable = manager.NumberAvailable(prize);
 
             NumClear();
 

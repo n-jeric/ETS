@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -112,14 +114,10 @@ namespace ETS.Business
             var lastday = DateTime.DaysInMonth(year, month);
             var cardExp = new DateTime(year, month, lastday, 23, 59, 59);
 
-            //if (DateTime.TryParse(cardExpiry, out DateTime dateValue))
-            //if (dateValue < DateTime.Now)
             if (cardExp < DateTime.Now)
                 return false;
             else
                 return true;
-            //else
-            //    return false;
         }
 
         #endregion
@@ -342,7 +340,6 @@ namespace ETS.Business
         {
             try
             {
-                //fs = new FileStream(fPath, FileMode.Append, FileAccess.Write); or true for append
                 using (StreamWriter textOut = new StreamWriter(fPath, false))
                 {
                     textOut.Write(textToFile);
@@ -353,7 +350,6 @@ namespace ETS.Business
             {
                 return ex.Message.ToString();
             }
-            //{ MessageBox.Show(ex.Message, "IOException"); }
         }
         public string WriteSponsor(string dirPath)
         {
@@ -454,7 +450,7 @@ namespace ETS.Business
                     string[] strArr;
                     strArr = textIn.ReadLine().Split(',');
 
-                    myPrizes.AddPrize(new Prize(strArr[0], strArr[1], double.Parse(strArr[2]), double.Parse(strArr[3]), int.Parse(strArr[4]), strArr[6]));
+                    myPrizes.AddPrize(new Prize(strArr[0], strArr[1], double.Parse(strArr[2]), double.Parse(strArr[3]), int.Parse(strArr[4]), int.Parse(strArr[5]), strArr[6]));
                 }
             }
         }
@@ -570,16 +566,6 @@ namespace ETS.Business
             }
             string[] strArr;
             strArr = info.Split(',');
-
-            //string[] strArr = new string[2];
-            //foreach (Sponsor sponsor in mySponsors)
-            //{
-            //    if (sponsor.SponsorID == sponsorID)
-            //    {
-            //        strArr[0] = sponsor.FirstName;
-            //        strArr[1] = sponsor.LastName;
-            //    }
-            //}
             return strArr;
         }
         public string FindDonor(string donorID)
@@ -596,108 +582,90 @@ namespace ETS.Business
         }
 
         //display in DataGrid
-        public List<List<string>> ListingSponsor()
+        public DataTable ToDataTable<T>(List<T> list)
         {
-            List<List<string>> listSponsor = new List<List<string>>();
+            DataTable dt = new DataTable(typeof(T).Name);
+            PropertyInfo[] props = typeof(T).GetProperties();
 
-            foreach (Sponsor sponsor in mySponsors)
+            foreach (PropertyInfo property in props)
             {
-                List<string> temp = new List<string>();
-                temp.Add(sponsor.SponsorID);
-                temp.Add(sponsor.FirstName);
-                temp.Add(sponsor.LastName);
-                temp.Add(sponsor.TotalPrizeValue.ToString("N2"));
-
-                listSponsor.Add(temp);
+                dt.Columns.Add(property.Name, property.PropertyType);
             }
-            return listSponsor;
+            foreach (T item in list)
+            {
+                DataRow row = dt.NewRow();
+                foreach (var propInfo in props)
+                {
+                    row[propInfo.Name] = propInfo.GetValue(item, null) ?? DBNull.Value;
+                }
+                dt.Rows.Add(row);
+            }
+            return dt;
         }
-        public List<List<string>> ListingPrizes()
+        public DataTable SponsorDataTable()
         {
-            List<List<string>> listPrize = new List<List<string>>();
+            List<Sponsor> list = mySponsors.Cast<Sponsor>().ToList();
 
-            foreach (Prize prize in myPrizes)
-            {
-                List<string> temp = new List<string>();
-                temp.Add(prize.PrizeID);
-                temp.Add(prize.Description);
-                temp.Add(prize.Value.ToString("N2"));
-                temp.Add(prize.DonationLimit.ToString("N2"));
-                temp.Add(prize.CurrentAvailable.ToString());
-
-                listPrize.Add(temp);
-            }
-            return listPrize;
+            DataTable sDT = ToDataTable(list);
+            return sDT;
         }
-        public List<List<string>> ListingDonors()
+        public DataTable PrizeDataTable()
         {
-            List<List<string>> listDonor = new List<List<string>>();
+            List<Prize> list = myPrizes.Cast<Prize>().ToList();
 
-            foreach (Donor donor in myDonors)
-            {
-                List<string> temp = new List<string>();
-                temp.Add(donor.DonorID);
-                temp.Add(donor.FirstName);
-                temp.Add(donor.LastName);
-                temp.Add(donor.Address);
-                temp.Add(donor.Phone);
-                temp.Add(donor.CardType.ToString());
-                temp.Add(donor.DonationTotal.ToString("N2"));
-
-                listDonor.Add(temp);
-            }
-            return listDonor;
+            DataTable pDT = ToDataTable(list);
+            return pDT;
         }
-        public List<List<string>> ListingDonations()
+        public DataTable DonorDataTable()
         {
-            List<List<string>> listDonation = new List<List<string>>();
+            List<Donor> list = myDonors.Cast<Donor>().ToList();
+            var rList = list.Select(e => new { e.DonorID, e.FirstName, e.LastName, e.Address, e.Phone, e.CardType, e.DonationTotal }).ToList();
 
-            foreach (Donation donation in myDonations)
-            {
-                List<string> temp = new List<string>();
-                temp.Add(donation.DonationID);
-                temp.Add(donation.DonationDate);
-                temp.Add(donation.DonationAmount.ToString("N2"));
-                temp.Add(donation.DonorID);
-                temp.Add(donation.PrizeID);
-                temp.Add(donation.PrizeNum.ToString());
+            DataTable dDT = ToDataTable(rList);
+            return dDT;
+        }
+        public DataTable DonationDataTable()
+        {
+            List<Donation> list = myDonations.Cast<Donation>().ToList();
 
-                listDonation.Add(temp);
-            }
-            return listDonation;
+            DataTable donatDT = ToDataTable(list);
+            return donatDT;
         }
         #endregion
 
         #region Show Prize
         //ListQualifiedPrizes in DataGrid
-        public List<List<string>> ListingPrizes(double amount)
+        public DataTable QualifiedPrizeDataTable(double amount)
         {
-            List<List<string>> listPrize = new List<List<string>>();
+            List<Prize> list = new List<Prize>();
 
             foreach (Prize prize in myPrizes)
             {
-                if (prize.DonationLimit < amount)
+                if (prize.DonationLimit <= amount)
                 {
-                    List<string> temp = new List<string>();
-                    temp.Add(prize.PrizeID);
-                    temp.Add(prize.Description);
-                    temp.Add(prize.Value.ToString("N2"));
-                    temp.Add(prize.DonationLimit.ToString("N2"));
-                    temp.Add(prize.CurrentAvailable.ToString());
-                    temp.Add(numberOfPrizes(prize.PrizeID, amount).ToString());
-                    //temp.Add(((int)(amount/prize.DonationLimit)).ToString());
-                    listPrize.Add(temp);
+                    list.Add(prize);
                 }
             }
-            return listPrize;
+            DataTable epDT = ToDataTable(list);
+
+            epDT.Columns.Remove("SponsorID");
+            epDT.Columns.Remove("OriginalAvailable");
+            epDT.Columns.Add("Number", typeof(System.Int32));
+
+            foreach (DataRow dr in epDT.Rows)
+            {
+                dr["Number"] = NumberOfPrizes((string)dr["PrizeID"], amount);
+            }
+            return epDT;
         }
+
         //ListQualifiedPrizes in DropDown
         public List<string> ListQualifiedPrizes(double amount)
         {
             List<string> prizeListCombo = new List<string>();
             foreach (Prize prize in myPrizes)
             {
-                if (prize.DonationLimit < amount)
+                if (prize.DonationLimit <= amount)
                 {
                     prizeListCombo.Add(prize.PrizeID + " -> " + prize.Description + " - " + prize.DonationLimit.ToString());
                 }
@@ -706,7 +674,7 @@ namespace ETS.Business
         }
 
         //Calculate number of prizes for donation amount
-        public int numberOfPrizes(string prizeID, double amount)
+        public int NumberOfPrizes(string prizeID, double amount)
         {
             int prizeNum = 0;
             foreach (Prize prize in myPrizes)
@@ -718,7 +686,7 @@ namespace ETS.Business
             }
             return prizeNum;
         }
-        public int numberAvilable(string prizeID)
+        public int NumberAvailable(string prizeID)
         {
             int numAvailable = 0;
             foreach (Prize prize in myPrizes)
@@ -730,7 +698,6 @@ namespace ETS.Business
             }
             return numAvailable;
         }
-
         #endregion
     }
 }

@@ -105,52 +105,16 @@ namespace TelethonSystemWin
 
         private void btnViewSponsor_Click(object sender, EventArgs e)
         {
-            List<List<string>> uInput;// = new List<List<string>>();
-            DataTable dt = new DataTable();
-            string[] usIn = new string[4];
-
-            uInput = manager.ListingSponsor();
-
-            dt.Columns.Add("Sponsor ID", typeof(string));
-            dt.Columns.Add("First Name", typeof(string));
-            dt.Columns.Add("Last Name", typeof(string));
-            dt.Columns.Add("Tot. Prize Value", typeof(string));
-
-
-
-            for (int i = 0; i < uInput.Count; i++)
-            {
-                for (int j = 0; j < usIn.Length; j++)
-                {
-                    usIn[j] = uInput[i][j];
-                }
-                dt.Rows.Add(usIn);
-                dataGVSponsors.DataSource = dt;
-            }
+            DataTable dt = manager.SponsorDataTable();
+            dataGVSponsors.DataSource = dt;
+            dataGVSponsors.Columns["TotalPrizeValue"].DefaultCellStyle.Format = "C2";
         }
         private void btnViewPrize_Click(object sender, EventArgs e)
         {
-            List<List<string>> uInput;
-            DataTable dt1 = new DataTable();
-            string[] usIn = new string[5];
-
-            uInput = manager.ListingPrizes();
-
-            dt1.Columns.Add("Prize ID", typeof(string));
-            dt1.Columns.Add("Description", typeof(string));
-            dt1.Columns.Add("Value", typeof(string));
-            dt1.Columns.Add("Donation Limit", typeof(string));
-            dt1.Columns.Add("Current Available", typeof(string));
-
-            for (int i = 0; i < uInput.Count; i++)
-            {
-                for (int j = 0; j < usIn.Length; j++)
-                {
-                    usIn[j] = uInput[i][j];
-                }
-                dt1.Rows.Add(usIn);
-                dataGVSponsors.DataSource = dt1;
-            }
+            DataTable dt = manager.PrizeDataTable();
+            dataGVSponsors.DataSource = dt;
+            dataGVSponsors.Columns["Value"].DefaultCellStyle.Format = "C2";
+            dataGVSponsors.Columns["DonationLimit"].DefaultCellStyle.Format = "C2";
         }
 
         private void btnClearSponsor_Click(object sender, EventArgs e)
